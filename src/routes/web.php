@@ -25,18 +25,21 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Détail d'un device
     $router->get('devices/{id}', ['uses' => 'ThermometreController@showOneDevice']);
 
-// Toutes les mesures d'un device
+    // Toutes les mesures d'un device
     $router->get('devices/{id}/measures', ['uses' => 'ThermometreController@showAllMeasuresPerDevice']);
 
     // Toutes les mesures
     $router->get('measures', ['uses' => 'ThermometreController@showAllMeasures']);
 
+    // Toutes les salles
+    $router->get('rooms', ['uses' => 'ThermometreController@showAllRooms']);
+
     // Ajout d'une mesure
     $router->post('devices/{identifier}/measures', ['uses' => 'ThermometreController@create']);
 
     // Modification d'une mesure
-    $router->put('devices/{idDevice}/measures/{idMeasure}', ['uses' => 'ThermometreController@update']);
+    $router->put('measures/{id}', ['uses' => 'ThermometreController@update']);
 
     // Suppression d'une mesure
-    $router->delete('devices/{idDevice}/measures/{idMeasure}', ['uses' => 'ThermometreController@delete']);
+    $router->delete('measures/{id}', ['uses' => 'ThermometreController@delete']);
 });

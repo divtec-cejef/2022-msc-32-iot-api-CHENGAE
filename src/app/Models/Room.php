@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model {
 
     //affiche ce message lors d'une erreur 404
-    public $modelNotFoundMessage = "Room inexistante";
+    public $modelNotFoundMessage = "Salle inexistante";
 
     public $timestamps = false;
     use HasFactory;

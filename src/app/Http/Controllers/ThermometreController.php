@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Models\Measure;
+use App\Models\Room;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -55,6 +56,17 @@ class ThermometreController extends Controller {
     }
 
     /**
+     * Affiche toutes les salles
+     *
+     * @response 200
+     *
+     * @return JsonResponse
+     */
+    public function showAllRooms() {
+        return Room::orderBy('id', 'ASC')->get();
+    }
+
+    /**
      * Valide la saisie des données dans la requête
      * Ajoute une une tache
      *
@@ -91,10 +103,10 @@ class ThermometreController extends Controller {
      * @return JsonResponse
      */
 
-    public function update($idDevice, $idMeasure, Request $request) {
+    public function update($id, Request $request) {
         $this->validate($request, Measure::validateRules());
-        Measure::findOrFail($idMeasure)->where('id_device', '=', $idDevice)->update($request->all());
-        return Measure::findOrFail($idMeasure);
+        Measure::findOrFail($id)->update($request->all());
+        return Measure::findOrFail($id);
     }
 
     /**
@@ -104,8 +116,8 @@ class ThermometreController extends Controller {
      *
      * @return JsonResponse
      */
-    public function delete($idDevice, $idMeasure) {
-        Measure::findOrFail($idMeasure)->where('id_device', '=', $idDevice)->delete();
+    public function delete($id) {
+        Measure::findOrFail($id)->delete();
         return response('', 204);
     }
 

@@ -71,7 +71,17 @@ class ThermometreTest extends TestCase {
      * @return void
      */
     public function testShowAllMeasures() {
-        $this->get('/api/measures/');
+        $this->get('/api/measures');
+        $this->assertResponseOk();//Affirme que la réponse a un code d'état 200:
+    }
+
+    /**
+     * Test de la Methode GET en récupérant toutes les salles
+     *
+     * @return void
+     */
+    public function testShowAllRooms() {
+        $this->get('/api/rooms');
         $this->assertResponseOk();//Affirme que la réponse a un code d'état 200:
     }
 
@@ -115,7 +125,7 @@ class ThermometreTest extends TestCase {
             'id_room' => $measure->id_room
         ];
 
-        $this->put('/api/devices/'.$measure->id_device.'/measures/'.$this->measures[0]->id, $newmeasure);
+        $this->put('/api/measures/'.$this->measures[0]->id, $newmeasure);
 
         $this->assertResponseOk(); //Affirme que la réponse a un code d'état 200:
         $this->seeJsonContains($newmeasure);
@@ -123,7 +133,7 @@ class ThermometreTest extends TestCase {
     }
 
     public function testDelete() {
-        $this->delete('/api/devices/'.$this->measures[0]->id_device.'/measures/'.$this->measures[0]->id);
+        $this->delete('/api/measures/'.$this->measures[0]->id);
 
         $this->assertResponseStatus(204);//Affirme que la réponse a un code d'état 204
         $this->notSeeInDatabase('measures', [
@@ -167,7 +177,7 @@ class ThermometreTest extends TestCase {
     }
 
     public function testNotFound() {
-        $this->put('/api/devices/'.$this->devices[0]->id.'/measures/0',
+        $this->put('/api/measures/0',
             [
                 'temperature' => 50.0,
                 'humidity' => 99,
