@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Measure extends Model {
 
     //affiche ce message lors d'une erreur 404
-    public $modelNotFoundMessage = "Mesure inexistante";
+    public $modelNotFoundMessage = 'Mesure inexistante';
 
     public $timestamps = false;
     use HasFactory;

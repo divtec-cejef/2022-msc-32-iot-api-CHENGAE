@@ -6,7 +6,6 @@ use App\Models\Measure;
 use App\Models\Room;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
 
 class ThermometreController extends Controller {
     /**
@@ -40,7 +39,7 @@ class ThermometreController extends Controller {
      * @return JsonResponse
      */
     public function showAllMeasuresPerDevice($id) {
-        return Measure::where('id_device', '=', $id)->get();
+        return Measure::where('id_device', '=', Device::findOrFail($id))->get();
     }
 
     /**
@@ -51,7 +50,6 @@ class ThermometreController extends Controller {
      * @return JsonResponse
      */
     public function showAllMeasures() {
-        //return Measure::orderBy('time', 'DESC')->get();
         return Measure::orderBy('time', 'DESC')->with('room', 'device')->get();
     }
 
@@ -78,7 +76,7 @@ class ThermometreController extends Controller {
         $this->validate($request, Measure::validateRules());
 
         //Récupère l'ID d'un device en fonction de son Identifier Sigfox.
-        $idDevice = Device::where('identifier', '=', $identifier)->get()->first()->id;
+        $idDevice = Device::where('identifier', '=', Device::findOrFail($identifier))->get()->first()->id;
 
         //Récupère le nouvel enregistrement.
         $data = $request->all();

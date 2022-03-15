@@ -177,7 +177,7 @@ class ThermometreTest extends TestCase {
     }
 
     public function testNotFound() {
-        $this->put('/api/measures/0',
+        $this->put('/api/measures/kk',
             [
                 'temperature' => 50.0,
                 'humidity' => 99,

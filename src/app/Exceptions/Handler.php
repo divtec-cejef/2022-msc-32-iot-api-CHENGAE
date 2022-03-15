@@ -1,6 +1,9 @@
 <?php
 namespace App\Exceptions;
 
+use App\Models\Device;
+use App\Models\Room;
+use App\Models\Measure;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
