@@ -22,8 +22,8 @@ class MeasureFactory extends Factory {
             'temperature' => $this->faker->randomFloat(1, 15, 30), // Nombre à virgule aléatoire entre 15 et 30
             'humidity' => (int) $this->faker->numberBetween(1, 100),             // Nombre aléatoire entre 1 et 100
             'time' => $this->faker->numberBetween(1640995200, 1646697600),       // Nombre aléatoire au format Epoch
-            'id_device' => $this->faker->numberBetween(1, 5),                    // Nombre aléatoire
-            'id_room' => $this->faker->numberBetween(1, 5),                      // Nombre aléatoire
+            'id_device' => $this->faker->numberBetween(1, 1),                    // Nombre aléatoire
+            'id_room' => $this->faker->numberBetween(1, 7),                      // Nombre aléatoire
         ];
     }
 }

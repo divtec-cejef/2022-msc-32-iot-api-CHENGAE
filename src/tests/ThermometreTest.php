@@ -92,16 +92,14 @@ class ThermometreTest extends TestCase {
             [
                 'temperature' => $measure->temperature,
                 'humidity' => $measure->humidity,
-                'time' => $measure->time,
-//                'id_device' => $this->devices[0]->id,
+                'time' => $measure->time + 3600,
                 'id_room' => $measure->id_room
             ]);
 
         $this->seeInDatabase('measures', [
             'temperature' => $measure->temperature,
             'humidity' => $measure->humidity,
-            'time' => $measure->time,
-            //'id_device' => $this->devices[0]->id,
+            'time' => $measure->time + 3600,
             'id_room' => $measure->id_room
         ]);
     }
@@ -173,7 +171,7 @@ class ThermometreTest extends TestCase {
             [
                 'temperature' => 50.0,
                 'humidity' => 99,
-                'time' => '2022-03-20 16:30:00',
+                'time' => 1640995200,
                 'id_device' => $this->devices[0]->id,
                 'id_room' => 1
             ]);

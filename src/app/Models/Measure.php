@@ -42,6 +42,7 @@ class Measure extends Model {
             'temperature' => 'required|numeric',
             'humidity' => 'required|integer',
             'time' => 'required|integer',
+            'id_device' => 'integer',
             'id_room' => 'integer'
         ];
     }

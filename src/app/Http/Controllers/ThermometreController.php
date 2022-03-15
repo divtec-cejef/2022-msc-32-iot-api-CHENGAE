@@ -64,14 +64,22 @@ class ThermometreController extends Controller {
      */
     public function create($identifier, Request $request) {
         $this->validate($request, Measure::validateRules());
+
+        //Récupère l'ID d'un device en fonction de son Identifier Sigfox.
         $idDevice = Device::where('identifier', '=', $identifier)->get()->first()->id;
-        $array = $request->all();
-        $array['id_device'] = (int)$idDevice;
 
-        $time = $array['time'];
-        $array['time'] = ((int)$time + 3600);
+        //Récupère le nouvel enregistrement.
+        $data = $request->all();
 
-        return Measure::create($array);
+        //Ajoute l'ID du device dans le nouvel enregistrement.
+        $data['id_device'] = (int)$idDevice;
+
+        //Récupère l'heure et y ajoute 1h (décalage horaire Sigfox).
+        $time = $data['time'];
+        $time += 3600;
+        $data['time'] = (int)$time;
+
+        return Measure::create($data);
     }
 
     /**
