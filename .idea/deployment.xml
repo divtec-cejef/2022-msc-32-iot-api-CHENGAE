@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Infomaniak" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="Infomaniak">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/temperature" local="$PROJECT_DIR$/src" web="https://chengae.divtec.me/temperature" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/src/vendor" />
+            <excludedPath path="/temperature/vendor" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
